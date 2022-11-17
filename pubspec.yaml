@@ -10,7 +10,14 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
+  flutter_secure_storage: ^6.0.0
+  logging: ^1.1.0
 
+  #network
+  connectivity_plus: ^3.0.2
+  dio: ^4.0.6
+
+  #maps
   google_maps_flutter: ^2.2.1
   google_maps_flutter_web: ^0.4.0+3
   geolocator: ^9.0.2
