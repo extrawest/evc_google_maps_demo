@@ -23,11 +23,15 @@ class StationsMap extends StatefulWidget {
 }
 
 class _StationsMapState extends State<StationsMap> {
-  late ClusterManager _clusterManager;
   final Completer<GoogleMapController> _controller = Completer();
+  late ClusterManager _clusterManager;
+
   Set<Marker> _markers = {};
 
-  late CameraPosition _kGooglePlex;
+  final CameraPosition _kGooglePlex = const CameraPosition(
+    target: LatLng(47.808376, 14.373285),
+    zoom: 8,
+  );
 
   @override
   void initState() {
@@ -37,10 +41,6 @@ class _StationsMapState extends State<StationsMap> {
 
   @override
   Widget build(BuildContext context) {
-    _kGooglePlex = CameraPosition(
-      target: const LatLng(47.808376, 14.373285),
-      zoom: context.watch<StationsBloc>().state.zoomLevel,
-    );
     return GoogleMap(
       zoomControlsEnabled: false,
       myLocationButtonEnabled: false,
@@ -75,27 +75,29 @@ class _StationsMapState extends State<StationsMap> {
             markerId: MarkerId(cluster.getId()),
             position: cluster.location,
             onTap: () {
-              context.read<StationsBloc>().add(StationClusterTappedEvent(stationCluster));
+              context
+                  .read<StationsBloc>()
+                  .add(StationClusterTappedEvent(stationCluster));
             },
             icon: await _getMarkerBitmap(
-              cluster.isMultiple ? 125 : 75,
+              size: cluster.isMultiple ? 125 : 75,
               color: _getColorFromAvgAvailability(stationCluster),
             ));
       };
 
-  Future<BitmapDescriptor> _getMarkerBitmap(
-    int size, {
-    required Color? color,
+  Future<BitmapDescriptor> _getMarkerBitmap({
+    required int size,
+    required Color color,
   }) async {
     if (kIsWeb) {
       size = (size / 2).floor();
     }
     final PictureRecorder pictureRecorder = PictureRecorder();
-    TextPainter painter = TextPainter(textDirection: TextDirection.ltr);
+    final TextPainter painter = TextPainter(textDirection: TextDirection.ltr);
     const icon = Icons.bolt_rounded;
     final Canvas canvas = Canvas(pictureRecorder);
     final Paint paint1 = Paint()..color = Colors.white;
-    final Paint paint2 = Paint()..color = color ?? Colors.white;
+    final Paint paint2 = Paint()..color = color;
 
     canvas.drawCircle(Offset(size / 2, size / 2), size / 2.0, paint1);
     canvas.drawCircle(Offset(size / 2, size / 2), size / 2.2, paint2);
@@ -136,13 +138,13 @@ class _StationsMapState extends State<StationsMap> {
         .reduce((a, b) => a.value > b.value ? a : b)
         .key) {
       case 'busy':
-        return Colors.red;
+        return const Color(0xFFF2C94C);
       case 'available':
-        return Colors.green;
+        return const Color(0xFF37D858);
       case 'offline':
-        return Colors.grey;
+        return const Color(0xFF222733);
       default:
-        return Colors.black;
+        return const Color(0xFFEB5757);
     }
   }
 }

@@ -57,6 +57,7 @@ class StationsScreen extends StatelessWidget {
                     SideButton(icon: Icons.my_location),
                     SizedBox(height: 8),
                     SideButton(icon: Icons.menu),
+                    SizedBox(height: 60),
                   ],
                 ),
               ),
@@ -66,6 +67,7 @@ class StationsScreen extends StatelessWidget {
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: const AppFloatingActionButton(),
         bottomNavigationBar: const ApplicationBottomBar(),
+        extendBody: true,
       ),
     );
   }

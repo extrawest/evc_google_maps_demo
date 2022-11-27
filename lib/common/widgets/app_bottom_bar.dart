@@ -1,3 +1,5 @@
+import 'dart:io' show Platform;
+
 import 'package:flutter/material.dart';
 
 class ApplicationBottomBar extends StatelessWidget {
@@ -6,20 +8,24 @@ class ApplicationBottomBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
+      elevation: 30,
       shape: const CircularNotchedRectangle(),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          ...iconButtons.map((item) => Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              IconButton(
-                icon: Icon(item.icon, color: Colors.grey),
-                onPressed: item.onPressed,
-              ),
-              Text(item.label, style: const TextStyle(color: Colors.grey)),
-            ],
-          )),
+          ...iconButtons.map(
+            (item) => Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  icon: Icon(item.icon, color: Colors.grey, size: 30,),
+                  onPressed: item.onPressed,
+                ),
+                Text(item.label, style: const TextStyle(color: Colors.grey)),
+                if(!Platform.isIOS) const SizedBox(height: 8),
+              ],
+            ),
+          ),
         ],
       ),
     );

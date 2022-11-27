@@ -1,5 +1,6 @@
+import 'dart:io' show Platform;
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class SearchBar extends StatelessWidget {
   const SearchBar({Key? key}) : super(key: key);
@@ -7,6 +8,7 @@ class SearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: !Platform.isIOS ?  const EdgeInsets.only(top: 16) : null,
       width: double.infinity,
       height: 48,
       decoration: BoxDecoration(
