@@ -2,28 +2,31 @@ import 'package:flutter/material.dart';
 
 class SideButton extends StatelessWidget {
   final IconData icon;
-  const SideButton({required this.icon, Key? key}) : super(key: key);
+  final VoidCallback onPressed;
+
+  const SideButton({
+    required this.icon,
+    required this.onPressed,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {},
-      child: Container(
-        width: 48,
-        height: 48,
-        decoration: BoxDecoration(
-          color: Colors.white,
+    return SizedBox.fromSize(
+      size: const Size.square(48),
+      child: Material(
+        color: Colors.white,
+        elevation: 4,
+        shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 1,
-              blurRadius: 7,
-              offset: const Offset(0, 3), // changes position of shadow
-            ),
-          ],
         ),
-        child: Icon(icon),
+        child: InkWell(
+          onTap: onPressed,
+          child: Icon(
+            icon,
+            color: Colors.black,
+          ),
+        ),
       ),
     );
   }
