@@ -6,9 +6,11 @@ import 'package:flutter_map_training/common/ui/widgets/app_floating_action_butto
 import 'package:flutter_map_training/features/stations_feature/repository/station_repository.dart';
 import 'package:flutter_map_training/features/stations_feature/widgets/side_button.dart';
 import 'package:flutter_map_training/features/stations_feature/widgets/stations_map.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../../common/ui/screens/home_screen/home_state.dart';
 import '../bloc/bloc.dart';
 import '../widgets/search_bar.dart';
+import '../widgets/stations_bottom_sheet.dart';
 
 class StationsScreen extends StatelessWidget {
   const StationsScreen({Key? key}) : super(key: key);
@@ -58,7 +60,27 @@ class StationsScreen extends StatelessWidget {
                 const SizedBox(height: 8),
                 SideButton(
                   icon: Icons.layers_outlined,
-                  onPressed: () {},
+                  onPressed: () {
+                    showModalBottomSheet(
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(16),
+                        ),
+                      ),
+                      context: context,
+                      builder: (_) => StationsBottomSheet(
+                        onStationTypeSelected: (type) {
+                          context
+                              .read<StationsBloc>()
+                              .add(ChangeMapTypeEvent(type));
+                        },
+                        currentMapType: context
+                            .read<StationsBloc>()
+                            .state
+                            .mapType
+                      ),
+                    );
+                  },
                 ),
                 const SizedBox(height: 100),
               ],

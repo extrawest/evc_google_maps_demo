@@ -44,7 +44,7 @@ class _StationsMapState extends State<StationsMap> {
     return GoogleMap(
       zoomControlsEnabled: false,
       myLocationButtonEnabled: false,
-      mapType: MapType.normal,
+      mapType: context.read<StationsBloc>().state.mapType,
       initialCameraPosition: _kGooglePlex,
       markers: _markers,
       onCameraMove: _clusterManager.onCameraMove,

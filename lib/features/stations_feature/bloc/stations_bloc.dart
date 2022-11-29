@@ -9,6 +9,7 @@ class StationsBloc extends Bloc<StationsEvent, StationsState> {
   StationsBloc(this.stationsRepository) : super(const StationsState()) {
     on<FetchStationsEvent>(_onStationsFetched);
     on<StationClusterTappedEvent>(_onStationTapped);
+    on<ChangeMapTypeEvent>(_onMapTypeChanged);
   }
 
   Future<void> _onStationsFetched(
@@ -37,6 +38,15 @@ class StationsBloc extends Bloc<StationsEvent, StationsState> {
     }
     emit(state.copyWith(
       zoomLevel: state.zoomLevel + 1,
+    ));
+  }
+
+  Future<void> _onMapTypeChanged(
+    ChangeMapTypeEvent event,
+    Emitter<StationsState> emit,
+  ) async {
+    emit(state.copyWith(
+      mapType: event.mapType,
     ));
   }
 }
