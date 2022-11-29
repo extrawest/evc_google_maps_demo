@@ -35,3 +35,6 @@ dev_dependencies:
   flutter_lints: ^2.0.0
 flutter:
   uses-material-design: true
+  assets:
+    - assets/images/map_type_normal.png
+    - assets/images/map_type_satellite.png

@@ -112,6 +112,7 @@ class _StationsBottomSheetState extends State<StationsBottomSheet> {
     required String label,
     required MapType mapType,
   }) {
+    print('assets/images/map_type_${mapType.toString().split('.').last}.png');
     return Expanded(
       child: Column(
         children: [
@@ -124,13 +125,18 @@ class _StationsBottomSheetState extends State<StationsBottomSheet> {
             child: Container(
               height: 100,
               decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(
+                    'assets/images/map_type_${mapType.toString().split('.').last}.png',
+                  ),
+                  fit: BoxFit.cover,
+                ),
                 border: selectedMapType == mapType
                     ? Border.all(
                         color: Colors.blue,
                         width: 2,
                       )
                     : null,
-                color: Colors.yellow,
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
