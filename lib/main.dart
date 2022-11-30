@@ -5,6 +5,7 @@ import 'package:flutter_map_training/common/utils/logger.dart';
 import 'package:flutter_map_training/network/api_client.dart';
 
 import 'features/stations_feature/repository/station_repository.dart';
+import 'features/stations_feature/services/location_service.dart';
 import 'features/stations_feature/services/stations_api_service.dart';
 
 void main() async {
@@ -27,9 +28,10 @@ class RepositoryHolder extends StatelessWidget {
       providers: [
         RepositoryProvider(
           create: (context) => StationRepositoryImpl(
-            StationsApiServiceImpl(
+            stationApiService: StationsApiServiceImpl(
               ApiClientImpl(apiDomain: 'https://demo1721737.mockable.io/'),
             ),
+            locationService: LocationServiceImpl(),
           ),
         ),
       ],

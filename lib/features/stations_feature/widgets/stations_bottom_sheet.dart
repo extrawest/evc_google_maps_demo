@@ -112,7 +112,6 @@ class _StationsBottomSheetState extends State<StationsBottomSheet> {
     required String label,
     required MapType mapType,
   }) {
-    print('assets/images/map_type_${mapType.toString().split('.').last}.png');
     return Expanded(
       child: Column(
         children: [

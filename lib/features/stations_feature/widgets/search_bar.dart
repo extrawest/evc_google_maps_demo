@@ -1,5 +1,6 @@
 import 'dart:io' show Platform;
 
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 
 class SearchBar extends StatelessWidget {
@@ -8,7 +9,8 @@ class SearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: !Platform.isIOS ?  const EdgeInsets.only(top: 16) : null,
+      margin:
+          kIsWeb || Platform.isAndroid ? const EdgeInsets.only(top: 16) : null,
       width: double.infinity,
       height: 48,
       decoration: BoxDecoration(
@@ -42,7 +44,7 @@ class SearchBar extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 10),
-          IconButton(onPressed: (){}, icon: const Icon(Icons.cancel_outlined)),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.cancel_outlined)),
         ],
       ),
     );

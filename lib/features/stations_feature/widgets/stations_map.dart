@@ -23,7 +23,6 @@ class StationsMap extends StatefulWidget {
 }
 
 class _StationsMapState extends State<StationsMap> {
-  final Completer<GoogleMapController> _controller = Completer();
   late ClusterManager _clusterManager;
 
   Set<Marker> _markers = {};
@@ -50,7 +49,10 @@ class _StationsMapState extends State<StationsMap> {
       onCameraMove: _clusterManager.onCameraMove,
       onCameraIdle: _clusterManager.updateMap,
       onMapCreated: (GoogleMapController controller) {
-        _controller.complete(controller);
+        final completer = context.read<StationsBloc>().mapController;
+        if (!completer.isCompleted) {
+          completer.complete(controller);
+        }
         _clusterManager.setMapId(controller.mapId);
       },
     );

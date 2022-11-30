@@ -9,12 +9,14 @@ class StationsState extends Equatable {
   final StationStatus status;
   final List<Station> stations;
   final MapType mapType;
+  final LatLng location;
   final double zoomLevel;
 
   const StationsState({
     this.status = StationStatus.initial,
     this.stations = const <Station>[],
     this.mapType = MapType.normal,
+    this.location = const LatLng(0, 0),
     this.zoomLevel = 6,
   });
 
@@ -22,16 +24,25 @@ class StationsState extends Equatable {
     StationStatus? status,
     List<Station>? stations,
     MapType? mapType,
+    LatLng? location,
     double? zoomLevel,
+    bool? showPopUp,
   }) {
     return StationsState(
       status: status ?? this.status,
       stations: stations ?? this.stations,
       mapType: mapType ?? this.mapType,
+      location: location ?? this.location,
       zoomLevel: zoomLevel ?? this.zoomLevel,
     );
   }
 
   @override
-  List<Object> get props => [status, stations, zoomLevel, mapType];
+  List<Object> get props => [
+        status,
+        stations,
+        zoomLevel,
+        mapType,
+        location,
+      ];
 }

@@ -20,3 +20,11 @@ class ChangeMapTypeEvent extends StationsEvent {
   final MapType mapType;
   const ChangeMapTypeEvent(this.mapType);
 }
+
+class LocationRequestedEvent extends StationsEvent {
+  final void Function() onLocationDenied;
+
+  const LocationRequestedEvent({required this.onLocationDenied});
+}
+
+class PermissionRequestEvent extends StationsEvent {}

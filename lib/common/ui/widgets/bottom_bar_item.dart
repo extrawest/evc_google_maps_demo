@@ -1,5 +1,6 @@
 import 'dart:io' show Platform;
 
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 
 class BottomBarItem extends StatelessWidget {
@@ -33,7 +34,7 @@ class BottomBarItem extends StatelessWidget {
           label,
           style: TextStyle(color: isSelected ? Colors.black : Colors.grey),
         ),
-        if (!Platform.isIOS) const SizedBox(height: 8),
+        if (kIsWeb || Platform.isAndroid) const SizedBox(height: 8),
       ],
     );
   }
