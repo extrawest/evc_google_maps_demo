@@ -10,14 +10,12 @@ class StationsState extends Equatable {
   final List<Station> stations;
   final MapType mapType;
   final LatLng location;
-  final double zoomLevel;
 
   const StationsState({
     this.status = StationStatus.initial,
     this.stations = const <Station>[],
     this.mapType = MapType.normal,
     this.location = const LatLng(0, 0),
-    this.zoomLevel = 6,
   });
 
   StationsState copyWith({
@@ -33,7 +31,6 @@ class StationsState extends Equatable {
       stations: stations ?? this.stations,
       mapType: mapType ?? this.mapType,
       location: location ?? this.location,
-      zoomLevel: zoomLevel ?? this.zoomLevel,
     );
   }
 
@@ -41,7 +38,6 @@ class StationsState extends Equatable {
   List<Object> get props => [
         status,
         stations,
-        zoomLevel,
         mapType,
         location,
       ];

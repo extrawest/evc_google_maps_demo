@@ -79,7 +79,7 @@ class _StationsMapState extends State<StationsMap> {
             onTap: () {
               context
                   .read<StationsBloc>()
-                  .add(StationClusterTappedEvent(stationCluster));
+                  .add(StationClusterTappedEvent(cluster: cluster));
             },
             icon: await _getMarkerBitmap(
               size: cluster.isMultiple ? 125 : 75,
