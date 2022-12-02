@@ -48,6 +48,11 @@ class _StationsMapState extends State<StationsMap> {
       markers: _markers,
       onCameraMove: _clusterManager.onCameraMove,
       onCameraIdle: _clusterManager.updateMap,
+      onTap: (_) {
+        context
+            .read<StationsBloc>()
+            .add(RemoveSelectedStationEvent());
+      },
       onMapCreated: (GoogleMapController controller) {
         final completer = context.read<StationsBloc>().mapController;
         if (!completer.isCompleted) {

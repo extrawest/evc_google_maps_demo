@@ -19,6 +19,8 @@ class StationsBloc extends Bloc<StationsEvent, StationsState> {
     on<ChangeMapTypeEvent>(_onMapTypeChanged);
     on<LocationRequestedEvent>(_onLocationRequested);
     on<PermissionRequestEvent>(_onPermissionRequested);
+    on<AddFavoriteEvent>(_onAddFavorite);
+    on<RemoveSelectedStationEvent>(_onRemoveSelectedStation);
   }
 
   Future<void> _onStationsFetched(
@@ -52,7 +54,7 @@ class StationsBloc extends Bloc<StationsEvent, StationsState> {
         ),
       ));
       final station = stationCluster.first;
-      print(station.status);
+      emit(state.copyWith(selectedStation: station));
     } else {
       final controller = await mapController.future;
       final zoomLevel = await controller.getZoomLevel();
@@ -92,11 +94,37 @@ class StationsBloc extends Bloc<StationsEvent, StationsState> {
     }
   }
 
+  Future<void> _onAddFavorite(
+    AddFavoriteEvent event,
+    Emitter<StationsState> emit,
+  ) async {
+    final favorites = [...state.favorites];
+    if (favorites.contains(event.station)) {
+      favorites.remove(event.station);
+    } else {
+      favorites.add(event.station);
+    }
+    emit(state.copyWith(favorites: favorites));
+  }
+
   Future<void> _onPermissionRequested(
     PermissionRequestEvent event,
     Emitter<StationsState> emit,
   ) async {
     await stationsRepository.requestPermission();
+  }
+
+  Future<void> _onRemoveSelectedStation(
+    RemoveSelectedStationEvent event,
+    Emitter<StationsState> emit,
+  ) async {
+    if (state.selectedStation != null) {
+      emit(state.copyWith(selectedStation: null, clearSelectedStation: true));
+    }
+  }
+
+  bool isFavorite(Station station) {
+    return state.favorites.contains(station);
   }
 
   double _getNextLevel(double value, List<double> levels) {
