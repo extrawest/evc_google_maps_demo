@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_map_training/common/router.dart';
+import 'package:flutter_map_training/common/routes.dart';
 import 'package:flutter_map_training/common/utils/logger.dart';
 import 'package:flutter_map_training/features/wallet_feature/repository/wallet_repository.dart';
 import 'package:flutter_map_training/network/api_client.dart';
@@ -60,9 +60,10 @@ class StationsApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: goRouter,
+    return MaterialApp(
       title: 'Stations App',
+      initialRoute: homeScreenPath,
+      routes: routes,
     );
   }
 }
