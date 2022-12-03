@@ -3,6 +3,7 @@ import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map_training/common/ui/widgets/bottom_bar_item.dart';
+import 'package:flutter_map_training/features/wallet_feature/bloc/bloc.dart';
 
 import '../screens/home_screen/home_bloc.dart';
 import '../screens/home_screen/home_event.dart';
@@ -14,6 +15,7 @@ class ApplicationBottomBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final homeBloc = BlocProvider.of<HomeBloc>(context, listen: true);
+    final walletBloc = BlocProvider.of<WalletBloc>(context, listen: true);
     return BottomAppBar(
       elevation: 30,
       shape: const CircularNotchedRectangle(),
@@ -39,7 +41,9 @@ class ApplicationBottomBar extends StatelessWidget {
           const SizedBox(width: 42),
           BottomBarItem(
             icon: Icons.wallet,
-            label: '124.5\$',
+            label: walletBloc.state.status == WalletStatus.loaded
+                ? '\$${walletBloc.state.wallet?.balance ?? 0}'
+                : '...',
             isSelected: homeBloc.state.currentScreen == AppScreen.wallet,
             onPressed: () {
               homeBloc.add(SwitchTabEvent(AppScreen.wallet));

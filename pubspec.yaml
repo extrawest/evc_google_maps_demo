@@ -28,6 +28,7 @@ dependencies:
   google_maps_flutter_web: ^0.4.0+3
   google_maps_cluster_manager: ^3.0.0+1
   geolocator: ^9.0.2
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:

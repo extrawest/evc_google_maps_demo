@@ -4,9 +4,10 @@ import 'package:flutter_map_training/common/ui/screens/home_screen/home_state.da
 import 'package:flutter_map_training/features/stations_feature/bloc/bloc.dart';
 import 'package:flutter_map_training/features/stations_feature/screens/stations_screen.dart';
 
-import '../../../../features/stations_feature/bloc/stations_bloc.dart';
-import '../../../../features/stations_feature/bloc/stations_event.dart';
 import '../../../../features/stations_feature/repository/station_repository.dart';
+import '../../../../features/wallet_feature/bloc/bloc.dart';
+import '../../../../features/wallet_feature/repository/wallet_repository.dart';
+import '../../../../features/wallet_feature/screens/wallet_screen.dart';
 import '../../widgets/app_bottom_bar.dart';
 import '../../widgets/app_floating_action_button.dart';
 import 'home_bloc.dart';
@@ -22,9 +23,15 @@ class HomeScreen extends StatelessWidget {
           create: (context) => HomeBloc(),
         ),
         BlocProvider(
-            create: (context) => StationsBloc(
-                RepositoryProvider.of<StationRepositoryImpl>(context))
-              ..add(FetchStationsEvent()))
+          create: (context) => StationsBloc(
+              RepositoryProvider.of<StationRepositoryImpl>(context))
+            ..add(FetchStationsEvent()),
+        ),
+        BlocProvider(
+          create: (context) => WalletBloc(
+              RepositoryProvider.of<WalletRepositoryImpl>(context))
+            ..add(FetchWalletInfo()),
+        ),
       ],
       child: Builder(builder: (context) {
         final homeBloc = context.watch<HomeBloc>();
@@ -39,7 +46,7 @@ class HomeScreen extends StatelessWidget {
                       color: Colors.orange,
                       child: const Center(child: Text('Favorites')));
                 case AppScreen.wallet:
-                  return const Center(child: Text('Wallet'));
+                  return const WalletScreen();
                 case AppScreen.account:
                   return const Center(child: Text('Account'));
               }
