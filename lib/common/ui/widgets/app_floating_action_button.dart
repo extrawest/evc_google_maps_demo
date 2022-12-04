@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../routes.dart';
+
 class AppFloatingActionButton extends StatelessWidget {
   const AppFloatingActionButton({Key? key}) : super(key: key);
 
@@ -25,7 +27,9 @@ class AppFloatingActionButton extends StatelessWidget {
           elevation: 0,
           backgroundColor: Colors.white,
           child: const Icon(Icons.electric_bolt_rounded,color: Colors.grey),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pushNamed(chargingScreenRoute);
+          },
         ),
       ),
     );

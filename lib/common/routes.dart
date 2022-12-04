@@ -6,10 +6,10 @@ import '../features/stations_feature/screens/charging_screen.dart';
 
 const String homeScreenPath = '/';
 const String loginScreenRoute = '/login_screen_route';
-const String stationsScreenRoute = '/charging_screen_route';
+const String chargingScreenRoute = '/charging_screen_route';
 
 Map<String, WidgetBuilder> routes = {
   homeScreenPath: (context) => const HomeScreen(),
   // loginScreenRoute: (context) => const LoginScreen(),
-  stationsScreenRoute: (context) => const ChargingScreen(),
+  chargingScreenRoute: (context) => const ChargingScreen(),
 };
