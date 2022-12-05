@@ -2,9 +2,16 @@ import 'dart:io' show Platform;
 
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_map_training/features/stations_feature/bloc/bloc.dart';
 
 class SearchBar extends StatelessWidget {
-  const SearchBar({Key? key}) : super(key: key);
+  final bool autofocus;
+
+  const SearchBar({
+    this.autofocus = false,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,14 +23,7 @@ class SearchBar extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 1,
-            blurRadius: 7,
-            offset: const Offset(0, 3), // changes position of shadow
-          ),
-        ],
+        border: Border.all(color: const Color(0xffDDEAF3)),
       ),
       child: Row(
         children: [
@@ -32,19 +32,24 @@ class SearchBar extends StatelessWidget {
           const SizedBox(width: 10),
           Expanded(
             child: TextField(
+              autofocus: autofocus,
               decoration: const InputDecoration(
                 border: InputBorder.none,
                 hintText: 'Type here',
               ),
               style: const TextStyle(fontSize: 18),
               textInputAction: TextInputAction.search,
-              onSubmitted: (value) {
-                print(value);
+              onChanged: (value) {
+                context.read<StationsBloc>().add(SearchQueryChangedEvent(value));
               },
             ),
           ),
           const SizedBox(width: 10),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.cancel_outlined)),
+          IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon: const Icon(Icons.cancel_outlined)),
         ],
       ),
     );

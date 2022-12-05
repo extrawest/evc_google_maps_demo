@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter_map_training/features/stations_feature/bloc/bloc.dart';
 import 'package:google_maps_cluster_manager/google_maps_cluster_manager.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -36,3 +37,20 @@ class AddFavoriteEvent extends StationsEvent {
 }
 
 class RemoveSelectedStationEvent extends StationsEvent {}
+
+class SearchQueryChangedEvent extends StationsEvent {
+  final String searchQuery;
+  const SearchQueryChangedEvent(this.searchQuery);
+}
+
+class AddToRecentSearchesEvent extends StationsEvent {
+  final Station station;
+  const AddToRecentSearchesEvent(this.station);
+}
+
+class ClearSearchQueryEvent extends StationsEvent {}
+
+class StationSelectedViaSearchEvent extends StationsEvent {
+  final Station station;
+  const StationSelectedViaSearchEvent(this.station);
+}

@@ -23,11 +23,6 @@ class HomeScreen extends StatelessWidget {
           create: (context) => HomeBloc(),
         ),
         BlocProvider(
-          create: (context) => StationsBloc(
-              RepositoryProvider.of<StationRepositoryImpl>(context))
-            ..add(FetchStationsEvent()),
-        ),
-        BlocProvider(
           create: (context) => WalletBloc(
               RepositoryProvider.of<WalletRepositoryImpl>(context))
             ..add(FetchWalletInfo()),

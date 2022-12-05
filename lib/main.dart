@@ -5,6 +5,8 @@ import 'package:flutter_map_training/common/utils/logger.dart';
 import 'package:flutter_map_training/features/wallet_feature/repository/wallet_repository.dart';
 import 'package:flutter_map_training/network/api_client.dart';
 
+import 'features/stations_feature/bloc/stations_bloc.dart';
+import 'features/stations_feature/bloc/stations_event.dart';
 import 'features/stations_feature/repository/station_repository.dart';
 import 'features/stations_feature/services/location_service.dart';
 import 'features/stations_feature/services/stations_api_service.dart';
@@ -60,10 +62,15 @@ class StationsApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Stations App',
-      initialRoute: homeScreenPath,
-      routes: routes,
+    return BlocProvider(
+      create: (context) => StationsBloc(
+          RepositoryProvider.of<StationRepositoryImpl>(context))
+        ..add(FetchStationsEvent()),
+      child: MaterialApp(
+        title: 'Stations App',
+        initialRoute: homeScreenPath,
+        routes: routes,
+      ),
     );
   }
 }

@@ -21,6 +21,10 @@ class StationsBloc extends Bloc<StationsEvent, StationsState> {
     on<PermissionRequestEvent>(_onPermissionRequested);
     on<AddFavoriteEvent>(_onAddFavorite);
     on<RemoveSelectedStationEvent>(_onRemoveSelectedStation);
+    on<SearchQueryChangedEvent>(_onSearchQueryChanged);
+    on<AddToRecentSearchesEvent>(_onAddToRecentSearches);
+    on<ClearSearchQueryEvent>(_onClearSearchQuery);
+    on<StationSelectedViaSearchEvent>(_onStationSelectedViaSearch);
   }
 
   Future<void> _onStationsFetched(
@@ -121,6 +125,48 @@ class StationsBloc extends Bloc<StationsEvent, StationsState> {
     if (state.selectedStation != null) {
       emit(state.copyWith(selectedStation: null, clearSelectedStation: true));
     }
+  }
+
+  Future<void> _onSearchQueryChanged(
+    SearchQueryChangedEvent event,
+    Emitter<StationsState> emit,
+  ) async {
+    emit(state.copyWith(searchQuery: event.searchQuery));
+  }
+
+  Future<void> _onAddToRecentSearches(
+    AddToRecentSearchesEvent event,
+    Emitter<StationsState> emit,
+  ) async {
+    final recentSearches = [...state.recentSearches];
+    if (recentSearches.contains(event.station)) {
+      return;
+    }
+    else {
+      recentSearches.add(event.station);
+    }
+    emit(state.copyWith(recentSearches: recentSearches));
+  }
+
+  Future<void> _onClearSearchQuery(
+    ClearSearchQueryEvent event,
+    Emitter<StationsState> emit,
+  ) async {
+    emit(state.copyWith(searchQuery: ''));
+  }
+
+  Future<void> _onStationSelectedViaSearch(
+    StationSelectedViaSearchEvent event,
+    Emitter<StationsState> emit,
+  ) async {
+    final controller = await mapController.future;
+    controller.animateCamera(CameraUpdate.newCameraPosition(
+      CameraPosition(
+        target: event.station.location,
+        zoom: 16,
+      ),
+    ));
+    emit(state.copyWith(selectedStation: event.station));
   }
 
   bool isFavorite(Station station) {

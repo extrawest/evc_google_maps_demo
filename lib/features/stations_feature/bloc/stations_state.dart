@@ -13,6 +13,8 @@ class StationsState extends Equatable {
   final LatLng location;
   final List<Station> favorites;
   final Station? selectedStation;
+  final String searchQuery;
+  final List<Station> recentSearches;
 
   const StationsState({
     this.status = StationStatus.initial,
@@ -21,6 +23,8 @@ class StationsState extends Equatable {
     this.location = const LatLng(0, 0),
     this.favorites = const <Station>[],
     this.selectedStation,
+    this.searchQuery = '',
+    this.recentSearches = const <Station>[],
   });
 
   StationsState copyWith({
@@ -31,6 +35,8 @@ class StationsState extends Equatable {
     List<Station>? favorites,
     Station? selectedStation,
     bool clearSelectedStation = false,
+    String? searchQuery,
+    List<Station>? recentSearches,
   }) {
     return StationsState(
       status: status ?? this.status,
@@ -40,6 +46,8 @@ class StationsState extends Equatable {
       favorites: favorites ?? this.favorites,
       selectedStation:
           clearSelectedStation ? null : selectedStation ?? this.selectedStation,
+      searchQuery: searchQuery ?? this.searchQuery,
+      recentSearches: recentSearches ?? this.recentSearches,
     );
   }
 
@@ -51,5 +59,7 @@ class StationsState extends Equatable {
         location,
         favorites,
         selectedStation,
+        searchQuery,
+        recentSearches,
       ];
 }
