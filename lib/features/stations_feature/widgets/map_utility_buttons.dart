@@ -11,6 +11,7 @@ class MapUtilityButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final selectedStation = context.watch<StationsBloc>().state.selectedStation;
     return Align(
       alignment: Alignment.bottomRight,
       child: Padding(
@@ -38,9 +39,9 @@ class MapUtilityButtons extends StatelessWidget {
                 _showBottomSheet(context);
               },
             ),
-            if (context.watch<StationsBloc>().state.selectedStation != null)
+            if (selectedStation != null)
               SelectedStationModal(
-                station: context.watch<StationsBloc>().state.selectedStation!,
+                station: selectedStation,
               ),
             const SizedBox(height: 100),
           ],

@@ -10,7 +10,10 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
+  flutter_svg: ^1.1.6
 
+  firebase_core: ^2.3.0
+  google_sign_in: ^5.4.2
   firebase_auth: ^4.1.5
   flutter_secure_storage: ^6.0.0
   logging: ^1.1.0
@@ -29,9 +32,6 @@ dependencies:
   google_maps_cluster_manager: ^3.0.0+1
   geolocator: ^9.0.2
   intl: ^0.17.0
-  firebase_core: ^2.3.0
-  google_sign_in: ^5.4.2
-  flutter_svg: ^1.1.6
 
 dev_dependencies:
   flutter_test:

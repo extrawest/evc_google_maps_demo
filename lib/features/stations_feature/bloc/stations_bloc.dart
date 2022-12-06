@@ -62,6 +62,8 @@ class StationsBloc extends Bloc<StationsEvent, StationsState> {
     } else {
       final controller = await mapController.future;
       final zoomLevel = await controller.getZoomLevel();
+      print('zoomLevel: $zoomLevel');
+      print('next zoomLevel: ${_getNextLevel(zoomLevel, _levels)}');
       controller.animateCamera(CameraUpdate.newCameraPosition(
         CameraPosition(
           target: event.cluster.location,

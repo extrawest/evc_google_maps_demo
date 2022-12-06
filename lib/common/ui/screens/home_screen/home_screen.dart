@@ -6,6 +6,7 @@ import 'package:flutter_map_training/features/stations_feature/screens/stations_
 
 import '../../../../features/account_feature/repository/account_repository.dart';
 import '../../../../features/account_feature/screens/account_screen.dart';
+import '../../../../features/stations_feature/screens/favorites_screen.dart';
 import '../../../../features/wallet_feature/bloc/bloc.dart';
 import '../../../../features/wallet_feature/repository/wallet_repository.dart';
 import '../../../../features/wallet_feature/screens/wallet_screen.dart';
@@ -42,9 +43,7 @@ class HomeScreen extends StatelessWidget {
                 case AppScreen.map:
                   return const StationsScreen();
                 case AppScreen.favorites:
-                  return Container(
-                      color: Colors.orange,
-                      child: const Center(child: Text('Favorites')));
+                  return const FavoritesScreen();
                 case AppScreen.wallet:
                   return const WalletScreen();
                 case AppScreen.account:
