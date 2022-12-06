@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map_training/common/ui/screens/home_screen/home_state.dart';
-import 'package:flutter_map_training/features/stations_feature/bloc/bloc.dart';
+import 'package:flutter_map_training/features/account_feature/bloc/account_bloc.dart';
 import 'package:flutter_map_training/features/stations_feature/screens/stations_screen.dart';
 
-import '../../../../features/stations_feature/repository/station_repository.dart';
+import '../../../../features/account_feature/repository/account_repository.dart';
+import '../../../../features/account_feature/screens/account_screen.dart';
 import '../../../../features/wallet_feature/bloc/bloc.dart';
 import '../../../../features/wallet_feature/repository/wallet_repository.dart';
 import '../../../../features/wallet_feature/screens/wallet_screen.dart';
@@ -27,9 +28,13 @@ class HomeScreen extends StatelessWidget {
               RepositoryProvider.of<WalletRepositoryImpl>(context))
             ..add(FetchWalletInfo()),
         ),
+        BlocProvider(
+          create: (context) => AccountBloc(
+            RepositoryProvider.of<AccountRepositoryImpl>(context),
+          ),
+        ),
       ],
       child: Builder(builder: (context) {
-        final homeBloc = context.watch<HomeBloc>();
         return Scaffold(
           body: BlocBuilder<HomeBloc, HomeState>(
             builder: (context, state) {
@@ -43,7 +48,7 @@ class HomeScreen extends StatelessWidget {
                 case AppScreen.wallet:
                   return const WalletScreen();
                 case AppScreen.account:
-                  return const Center(child: Text('Account'));
+                  return const AccountScreen();
               }
             },
           ),
