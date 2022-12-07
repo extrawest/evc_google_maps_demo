@@ -64,7 +64,7 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         manifestPlaceholders += [
-                MAP_API_KEY: dartEnvironmentVariables.MAP_API_KEY,
+                'MAP_API_KEY': dartEnvironmentVariables.MAP_API_KEY,
         ]
     }
 

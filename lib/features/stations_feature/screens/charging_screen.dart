@@ -24,9 +24,11 @@ class ChargingScreen extends StatelessWidget {
           },
         ),
       ),
-      body: const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-        child: ChargingCard(),
+      body: const SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+          child: ChargingCard(),
+        ),
       ),
     );
   }
