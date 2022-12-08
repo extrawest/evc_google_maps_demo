@@ -27,11 +27,6 @@ class _StationsMapState extends State<StationsMap> {
 
   Set<Marker> _markers = {};
 
-  final CameraPosition _kGooglePlex = const CameraPosition(
-    target: LatLng(47.808376, 14.373285),
-    zoom: 8,
-  );
-
   @override
   void initState() {
     _clusterManager = _initClusterManager();
@@ -40,24 +35,23 @@ class _StationsMapState extends State<StationsMap> {
 
   @override
   Widget build(BuildContext context) {
+    final stationsBloc = context.read<StationsBloc>();
     return GoogleMap(
       zoomControlsEnabled: false,
       myLocationButtonEnabled: false,
-      mapType: context.read<StationsBloc>().state.mapType,
-      initialCameraPosition: _kGooglePlex,
+      mapType: stationsBloc.state.mapType,
+      initialCameraPosition: stationsBloc.state.cameraPosition,
       markers: _markers,
-      onCameraMove: _clusterManager.onCameraMove,
+      onCameraMove: (CameraPosition cameraPosition) {
+        stationsBloc.add(OnCameraMoveEvent(cameraPosition));
+        _clusterManager.onCameraMove(cameraPosition);
+      },
       onCameraIdle: _clusterManager.updateMap,
       onTap: (_) {
-        context
-            .read<StationsBloc>()
-            .add(RemoveSelectedStationEvent());
+        stationsBloc.add(RemoveSelectedStationEvent());
       },
       onMapCreated: (GoogleMapController controller) {
-        final completer = context.read<StationsBloc>().mapController;
-        if (!completer.isCompleted) {
-          completer.complete(controller);
-        }
+        stationsBloc.initMapController(controller);
         _clusterManager.setMapId(controller.mapId);
       },
     );

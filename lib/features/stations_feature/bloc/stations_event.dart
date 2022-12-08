@@ -54,3 +54,8 @@ class StationSelectedViaSearchEvent extends StationsEvent {
   final Station station;
   const StationSelectedViaSearchEvent(this.station);
 }
+
+class OnCameraMoveEvent extends StationsEvent {
+  final CameraPosition cameraPosition;
+  const OnCameraMoveEvent(this.cameraPosition);
+}

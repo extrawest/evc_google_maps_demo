@@ -10,7 +10,7 @@ class StationsState extends Equatable {
   final StationStatus status;
   final List<Station> stations;
   final MapType mapType;
-  final LatLng location;
+  final CameraPosition cameraPosition;
   final List<Station> favorites;
   final Station? selectedStation;
   final String searchQuery;
@@ -20,7 +20,10 @@ class StationsState extends Equatable {
     this.status = StationStatus.initial,
     this.stations = const <Station>[],
     this.mapType = MapType.normal,
-    this.location = const LatLng(0, 0),
+    this.cameraPosition = const CameraPosition(
+      target: LatLng(47.808376, 14.373285),
+      zoom: 8,
+    ),
     this.favorites = const <Station>[],
     this.selectedStation,
     this.searchQuery = '',
@@ -31,7 +34,7 @@ class StationsState extends Equatable {
     StationStatus? status,
     List<Station>? stations,
     MapType? mapType,
-    LatLng? location,
+    CameraPosition? cameraPosition,
     List<Station>? favorites,
     Station? selectedStation,
     bool clearSelectedStation = false,
@@ -42,7 +45,7 @@ class StationsState extends Equatable {
       status: status ?? this.status,
       stations: stations ?? this.stations,
       mapType: mapType ?? this.mapType,
-      location: location ?? this.location,
+      cameraPosition: cameraPosition ?? this.cameraPosition,
       favorites: favorites ?? this.favorites,
       selectedStation:
           clearSelectedStation ? null : selectedStation ?? this.selectedStation,
@@ -56,7 +59,7 @@ class StationsState extends Equatable {
         status,
         stations,
         mapType,
-        location,
+        cameraPosition,
         favorites,
         selectedStation,
         searchQuery,

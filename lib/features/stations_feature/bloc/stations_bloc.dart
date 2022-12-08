@@ -11,7 +11,7 @@ class StationsBloc extends Bloc<StationsEvent, StationsState> {
   final _levels = const [1.0, 4.25, 6.75, 8.25, 11.5, 14.5, 16.0, 16.5];
 
   final StationRepository stationsRepository;
-  final Completer<GoogleMapController> mapController = Completer();
+  GoogleMapController? mapController;
 
   StationsBloc(this.stationsRepository) : super(const StationsState()) {
     on<FetchStationsEvent>(_onStationsFetched);
@@ -25,6 +25,11 @@ class StationsBloc extends Bloc<StationsEvent, StationsState> {
     on<AddToRecentSearchesEvent>(_onAddToRecentSearches);
     on<ClearSearchQueryEvent>(_onClearSearchQuery);
     on<StationSelectedViaSearchEvent>(_onStationSelectedViaSearch);
+    on<OnCameraMoveEvent>(_onCameraMove);
+  }
+
+  void initMapController(GoogleMapController controller) {
+    mapController = controller;
   }
 
   Future<void> _onStationsFetched(
@@ -50,8 +55,7 @@ class StationsBloc extends Bloc<StationsEvent, StationsState> {
     final Iterable<Station> stationCluster =
         event.cluster.items.cast<Station>();
     if (stationCluster.length == 1) {
-      final controller = await mapController.future;
-      controller.animateCamera(CameraUpdate.newCameraPosition(
+      mapController?.animateCamera(CameraUpdate.newCameraPosition(
         CameraPosition(
           target: event.cluster.location,
           zoom: _levels.last,
@@ -60,14 +64,11 @@ class StationsBloc extends Bloc<StationsEvent, StationsState> {
       final station = stationCluster.first;
       emit(state.copyWith(selectedStation: station));
     } else {
-      final controller = await mapController.future;
-      final zoomLevel = await controller.getZoomLevel();
-      print('zoomLevel: $zoomLevel');
-      print('next zoomLevel: ${_getNextLevel(zoomLevel, _levels)}');
-      controller.animateCamera(CameraUpdate.newCameraPosition(
+      final zoomLevel = await mapController?.getZoomLevel();
+      mapController?.animateCamera(CameraUpdate.newCameraPosition(
         CameraPosition(
           target: event.cluster.location,
-          zoom: _getNextLevel(zoomLevel, _levels),
+          zoom: _getNextLevel(zoomLevel!, _levels),
         ),
       ));
     }
@@ -88,8 +89,7 @@ class StationsBloc extends Bloc<StationsEvent, StationsState> {
   ) async {
     try {
       final location = await stationsRepository.getCurrentLocation();
-      final controller = await mapController.future;
-      controller.animateCamera(CameraUpdate.newCameraPosition(
+      mapController?.animateCamera(CameraUpdate.newCameraPosition(
         CameraPosition(
           target: location,
           zoom: 10,
@@ -161,14 +161,20 @@ class StationsBloc extends Bloc<StationsEvent, StationsState> {
     StationSelectedViaSearchEvent event,
     Emitter<StationsState> emit,
   ) async {
-    final controller = await mapController.future;
-    controller.animateCamera(CameraUpdate.newCameraPosition(
+    mapController?.animateCamera(CameraUpdate.newCameraPosition(
       CameraPosition(
         target: event.station.location,
         zoom: 16,
       ),
     ));
     emit(state.copyWith(selectedStation: event.station));
+  }
+
+  Future<void> _onCameraMove(
+    OnCameraMoveEvent event,
+    Emitter<StationsState> emit,
+  ) async {
+    emit(state.copyWith(cameraPosition: event.cameraPosition));
   }
 
   bool isFavorite(Station station) {
