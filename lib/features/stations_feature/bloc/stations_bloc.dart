@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import '../../../common/utils/logger.dart';
 import '../models/station_model.dart';
 import '../repository/station_repository.dart';
 import 'bloc.dart';
@@ -95,8 +96,9 @@ class StationsBloc extends Bloc<StationsEvent, StationsState> {
           zoom: 10,
         ),
       ));
-    } catch (_) {
+    } catch (error) {
       event.onLocationDenied();
+      log.severe(error);
     }
   }
 

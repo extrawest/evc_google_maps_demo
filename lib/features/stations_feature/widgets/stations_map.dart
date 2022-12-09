@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_map_training/common/theme.dart';
 import 'package:google_maps_cluster_manager/google_maps_cluster_manager.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../bloc/bloc.dart';
@@ -139,13 +140,13 @@ class _StationsMapState extends State<StationsMap> {
         .reduce((a, b) => a.value > b.value ? a : b)
         .key) {
       case 'busy':
-        return const Color(0xFFF2C94C);
+        return busyColor;
       case 'available':
-        return const Color(0xFF37D858);
+        return availableColor;
       case 'offline':
-        return const Color(0xFF222733);
+        return offlineColor;
       default:
-        return const Color(0xFFEB5757);
+        return nullColor;
     }
   }
 }

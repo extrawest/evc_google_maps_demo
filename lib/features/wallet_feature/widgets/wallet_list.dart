@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_map_training/common/theme.dart';
 import 'package:flutter_map_training/features/wallet_feature/widgets/transaction_list_item.dart';
 
 import '../model/wallet_model.dart';
@@ -11,12 +12,12 @@ class WalletList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color(0xffDDEAF3),
+      color: greyWhite,
       child: CustomScrollView(
         slivers: [
           SliverAppBar(
             pinned: true,
-            backgroundColor: const Color(0xffDDEAF3),
+            backgroundColor: greyWhite,
             collapsedHeight: 80,
             expandedHeight: 220,
             flexibleSpace: FlexibleSpaceBar(
@@ -99,38 +100,3 @@ class WalletList extends StatelessWidget {
     );
   }
 }
-
-// title: SafeArea(
-//   child: Column(
-//     mainAxisSize: MainAxisSize.min,
-//     children: [
-//       const Text(
-//         'Wallet',
-//         style: TextStyle(
-//           fontWeight: FontWeight.bold,
-//           color: Colors.black,
-//           fontSize: 18,
-//         ),
-//       ),
-//       const SizedBox(height: 44),
-//       const Text(
-//         'Balance',
-//         style: TextStyle(
-//           fontWeight: FontWeight.normal,
-//           color: Colors.black,
-//           fontSize: 12,
-//         ),
-//       ),
-//       const SizedBox(height: 4),
-//       Text(
-//         '\$${wallet.balance.toStringAsFixed(2)}',
-//         style: const TextStyle(
-//           fontWeight: FontWeight.bold,
-//           color: Colors.black,
-//           fontSize: 18,
-//         ),
-//       ),
-//       const SizedBox(height: 8),
-//     ],
-//   ),
-// ),

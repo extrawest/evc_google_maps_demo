@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../common/theme.dart';
+
 class AccountInfoFiled extends StatelessWidget {
   final String label;
   final IconData icon;
@@ -30,7 +32,7 @@ class AccountInfoFiled extends StatelessWidget {
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: Color(0xffDDEAF3)),
+              border: Border.all(color: greyWhite),
             ),
             child: Row(
               children: [

@@ -3,6 +3,7 @@ import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_map_training/common/theme.dart';
 import 'package:flutter_map_training/features/stations_feature/bloc/bloc.dart';
 
 class SearchBar extends StatelessWidget {
@@ -23,7 +24,7 @@ class SearchBar extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: const Color(0xffDDEAF3)),
+        border: Border.all(color: greyWhite),
       ),
       child: Row(
         children: [

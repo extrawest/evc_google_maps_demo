@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_map_training/common/theme.dart';
 import 'package:flutter_map_training/features/stations_feature/bloc/bloc.dart';
 
 import '../models/station_model.dart';
 
 const Map<String, Color> availabilityColors = {
-  'busy': Color(0xFFF2C94C),
-  'available': Color(0xFF37D858),
-  'offline': Color(0xFF222733),
-  'null': Color(0xFFEB5757),
+  'busy': busyColor,
+  'available': availableColor,
+  'offline': offlineColor,
+  'null': nullColor,
 };
 
 class SelectedStationModal extends StatelessWidget {

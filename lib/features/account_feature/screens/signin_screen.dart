@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_map_training/common/utils/assets.dart';
 import 'package:flutter_map_training/features/account_feature/bloc/bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -44,7 +45,7 @@ class SignInScreen extends StatelessWidget {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  SvgPicture.asset('assets/icons/google_logo.svg',height: 24,),
+                  SvgPicture.asset(googleLogoAsset ,height: 24,),
                   const SizedBox(width: 20),
                   const Text('Sign Up with Google', style: TextStyle(fontSize: 16)),
                   const SizedBox(width: 20),

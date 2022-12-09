@@ -9,7 +9,7 @@ class AppFloatingActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(34),
+        borderRadius: BorderRadius.circular(32),
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.15),
@@ -25,6 +25,7 @@ class AppFloatingActionButton extends StatelessWidget {
       child: FittedBox(
         child: FloatingActionButton(
           elevation: 0,
+          shape: const CircleBorder(),
           backgroundColor: Colors.white,
           child: const Icon(Icons.electric_bolt_rounded,color: Colors.grey),
           onPressed: () {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_map_training/common/theme.dart';
 
 import 'charging_proggres_indicator.dart';
 
@@ -57,7 +58,7 @@ class ChargingCard extends StatelessWidget {
             onPressed: () {},
             style: TextButton.styleFrom(
               foregroundColor: Colors.white,
-              backgroundColor: const Color(0xFF597393),
+              backgroundColor: greyBlue,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(4),
               ),
@@ -179,14 +180,14 @@ class ChargingCard extends StatelessWidget {
                         vertical: 6,
                       ),
                       decoration: BoxDecoration(
-                        color: const Color(0xFFDDEAF3),
+                        color: greyWhite,
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Row(
                         children: const [
                           Icon(
                             Icons.ev_station,
-                            color: Color(0xFF597393),
+                            color: greyBlue,
                             size: 16,
                           ),
                           SizedBox(width: 4),

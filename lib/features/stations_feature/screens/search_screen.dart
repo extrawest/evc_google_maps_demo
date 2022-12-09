@@ -10,6 +10,7 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final stationBloc = context.watch<StationsBloc>();
     return Scaffold(
       body: GestureDetector(
         behavior: HitTestBehavior.opaque,
@@ -30,8 +31,8 @@ class SearchScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 16),
-                if (context.watch<StationsBloc>().state.searchQuery.isEmpty &&
-                    context.read<StationsBloc>().state.recentSearches.isNotEmpty)
+                if (stationBloc.state.searchQuery.isEmpty &&
+                    stationBloc.state.recentSearches.isNotEmpty)
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16),
                     child: SizedBox(

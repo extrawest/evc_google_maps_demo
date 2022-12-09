@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_map_training/common/theme.dart';
 
 double deg2rad(double deg) => deg * pi / 180;
 
@@ -70,7 +71,7 @@ class _ChargingProgressIndicatorPainter extends CustomPainter {
       radius,
       text: '${(percentage * 100).floor()}%',
       textStyle: const TextStyle(
-        color: Color(0xff597393),
+        color: greyBlue,
         fontSize: 18,
         fontWeight: FontWeight.bold,
       ),
@@ -103,7 +104,7 @@ class _ChargingProgressIndicatorPainter extends CustomPainter {
     _drawArc(canvas, center, radius + 10);
 
     final paint = Paint()
-      ..color = const Color(0xff597393)
+      ..color = greyBlue
       ..strokeWidth = 10
       ..strokeCap = StrokeCap.round
       ..style = PaintingStyle.stroke;
@@ -122,8 +123,8 @@ class _ChargingProgressIndicatorPainter extends CustomPainter {
       ..style = PaintingStyle.stroke
       ..shader = SweepGradient(
         colors: const [
-          Color(0xffE9F2F9),
-          Color(0xff597393),
+          greyWhite,
+          greyBlue,
         ],
         transform: GradientRotation(deg2rad(progress)),
       ).createShader(Rect.fromCircle(center: center, radius: radius));
@@ -142,7 +143,7 @@ class _ChargingProgressIndicatorPainter extends CustomPainter {
         text: String.fromCharCode(icon.codePoint),
         style: TextStyle(
           fontSize: 25,
-          color: const Color(0xff597393),
+          color: greyBlue,
           fontFamily: icon.fontFamily,
         ),
       )
@@ -196,7 +197,7 @@ class _ChargingProgressIndicatorPainter extends CustomPainter {
       center,
       radius - 10,
       Paint()
-        ..color = const Color(0xffDDEAF3)
+        ..color = greyWhite
         ..style = PaintingStyle.stroke
         ..strokeWidth = 1,
     );

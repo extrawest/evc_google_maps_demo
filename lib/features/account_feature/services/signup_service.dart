@@ -18,7 +18,6 @@ class SignInServiceImpl implements SignInService {
     if(kIsWeb) {
       final googleProvider = GoogleAuthProvider();
 
-      googleProvider.addScope('https://www.googleapis.com/auth/contacts.readonly');
       googleProvider.setCustomParameters({
         'login_hint': 'user@example.com'
       });

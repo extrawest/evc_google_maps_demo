@@ -3,6 +3,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map_training/common/routes.dart';
+import 'package:flutter_map_training/common/theme.dart';
+import 'package:flutter_map_training/common/utils/api_domain_sneak_spot.dart';
 import 'package:flutter_map_training/common/utils/logger.dart';
 import 'package:flutter_map_training/features/account_feature/services/signup_service.dart';
 import 'package:flutter_map_training/features/wallet_feature/repository/wallet_repository.dart';
@@ -46,8 +48,7 @@ class RepositoryHolder extends StatelessWidget {
         RepositoryProvider(
           create: (context) => StationRepositoryImpl(
             stationApiService: StationsApiServiceImpl(
-              //TODO: hide endpoint
-              ApiClientImpl(apiDomain: 'https://demo1721737.mockable.io/'),
+              ApiClientImpl(apiDomain: ApiDomainSneakSpot.apiDomain),
             ),
             locationService: LocationServiceImpl(),
           ),
@@ -55,8 +56,7 @@ class RepositoryHolder extends StatelessWidget {
         RepositoryProvider(
           create: (context) => WalletRepositoryImpl(
             walletService: WalletServiceImpl(
-              //TODO: hide endpoint
-              ApiClientImpl(apiDomain: 'https://demo1721737.mockable.io/'),
+              ApiClientImpl(apiDomain: ApiDomainSneakSpot.apiDomain),
             ),
           ),
         ),
@@ -86,6 +86,7 @@ class StationsApp extends StatelessWidget {
         title: 'Stations App',
         initialRoute: homeScreenPath,
         routes: routes,
+        theme: lightTheme,
       ),
     );
   }
