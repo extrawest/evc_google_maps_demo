@@ -2,20 +2,25 @@
 
 [![Maintanence](https://img.shields.io/badge/Maintenance-yes%3F-blue.svg)]()
 [![Codemagic build status](https://api.codemagic.io/apps/63905b4f2551810eda63638f/63905b4f2551810eda63638e/status_badge.svg)](https://codemagic.io/apps/63905b4f2551810eda63638f/63905b4f2551810eda63638e/latest_build)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![](https://img.shields.io/badge/what%20else%3F-i'm%20not%20sure-green)]()
+[![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)]()
+![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)
+![GitHub release](https://img.shields.io/badge/release-v1.0.0-blue)
+[![View DEMO](https://img.shields.io/badge/VIEW-DEMO-lightgreen.svg)](https://stations-map-app.web.app)
 
 ## Project info 
-- This project is a simple app that shows a map with stations and their information.
+- This project is a app that shows a map with Electric Charging Stations and their information. The app supports station markers clustering.
 - The app runs on Android, iOS and Web.
 - The app is built using Flutter 3.3 and Dart.
 - The app is built using the MVVM architecture.
 - The app is built using the BLoC pattern.
 
+## Demo
+[Stations Map App](https://stations-map-app.web.app)
+
 ## How to run the app
 - **Clone the project.**
 ```shell
-git clone https://gitlab.extrawest.com/i-training/flutter/oleksii.melnychenko_google_maps_app.git your_name_here
+git clone https://github.com/extrawest/evc_google_maps_demo.git
 ```
 - **Open the project.**
 ```shell
@@ -62,8 +67,9 @@ flutter build web
 firebase deploy
 ```
 
-At this point your app should be deployed to Firebase hosting.
 
-Created by **Lesha Melnychenko**
+Created by **Oleksii Melnychenko**
+
+[Extrawest.com](https://www.extrawest.com), 2022
 
 
