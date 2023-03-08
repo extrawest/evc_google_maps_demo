@@ -5,6 +5,7 @@
 [![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)]()
 ![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)
 ![GitHub release](https://img.shields.io/badge/release-v1.0.0-blue)
+![Supported Platforms](https://img.shields.io/badge/Platform-Android%20|%20iOS%20|%20Web%20%20-blue.svg?logo=flutter)
 [![View DEMO](https://img.shields.io/badge/VIEW-DEMO-lightgreen.svg)](https://stations-map-app.web.app)
 
 ## Project info 
