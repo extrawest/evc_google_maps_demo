@@ -20,7 +20,7 @@ class WalletServiceImpl implements WalletService {
   @override
   Future<Wallet> getWalletInfo() async {
     try {
-      final walletResponse = await apiClient.get('wallet-info');
+      final walletResponse = await apiClient.get('wallet-info.json');
       return Wallet.fromJson(walletResponse);
     } catch (e) {
       log.severe('_fetchWalletInfo error: $e');
