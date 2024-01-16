@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map_training/common/routes.dart';
 import 'package:flutter_map_training/features/stations_feature/widgets/map_utility_buttons.dart';
+import 'package:flutter_map_training/features/stations_feature/widgets/search_bar.dart';
 import 'package:flutter_map_training/features/stations_feature/widgets/stations_map.dart';
 import '../bloc/bloc.dart';
 import '../models/station_model.dart';
-import '../widgets/search_bar.dart';
 
 class StationsScreen extends StatelessWidget {
   const StationsScreen({Key? key}) : super(key: key);
@@ -48,7 +48,7 @@ class StationsScreen extends StatelessWidget {
                     tag: 'SearchBar',
                     child: Material(
                       color: Colors.transparent,
-                      child: SearchBar(),
+                      child: SearchBarWidget(),
                     ),
                   ),
                 ),

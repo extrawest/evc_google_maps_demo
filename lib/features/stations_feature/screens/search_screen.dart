@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map_training/features/stations_feature/bloc/bloc.dart';
+import 'package:flutter_map_training/features/stations_feature/widgets/search_bar.dart';
 import 'package:flutter_map_training/features/stations_feature/widgets/search_query_item.dart';
-import '../models/station_model.dart';
-import '../widgets/search_bar.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -25,7 +24,7 @@ class SearchScreen extends StatelessWidget {
                 const Hero(
                   tag: 'SearchBar',
                   child: Material(
-                    child: SearchBar(
+                    child: SearchBarWidget(
                       autofocus: true,
                     ),
                   ),
