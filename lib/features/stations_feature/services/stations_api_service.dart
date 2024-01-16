@@ -11,7 +11,7 @@ abstract class StationsApiService {
 }
 
 class StationsApiServiceImpl implements StationsApiService {
-  final String _stationsPath = '/chargestations';
+  final String _stationsPath = '/stations.json';
 
   @override
   final ApiClient _apiClient;

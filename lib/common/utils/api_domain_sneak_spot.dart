@@ -1,3 +1,3 @@
 class ApiDomainSneakSpot {
-  static const apiDomain = 'https://demo1721737.mockable.io/';
+  static const apiDomain = 'https://ew-shared-api-endpoints-default-rtdb.firebaseio.com/';
 }
