@@ -6,7 +6,7 @@
 ![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)
 ![GitHub release](https://img.shields.io/badge/release-v1.0.0-blue)
 ![Supported Platforms](https://img.shields.io/badge/Platform-Android%20|%20iOS%20|%20Web%20%20-blue.svg?logo=flutter)
-[![View DEMO](https://img.shields.io/badge/VIEW-DEMO-lightgreen.svg)](https://animated-alfajores-40eb7b.netlify.app//)
+[![View DEMO](https://img.shields.io/badge/VIEW-DEMO-lightgreen.svg)](https://animated-alfajores-40eb7b.netlify.app)
 
 ## Project info 
 - This project is a app that shows a map with Electric Charging Stations and their information. The app supports station markers clustering.
@@ -16,7 +16,7 @@
 - The app is built using the BLoC pattern.
 
 ## Demo
-[Stations Map App](https://animated-alfajores-40eb7b.netlify.app/)
+[Stations Map App](https://animated-alfajores-40eb7b.netlify.app)
 
 https://user-images.githubusercontent.com/42183561/220624033-6834b985-5027-4b1c-b5b0-f18ffe84f5f8.mp4
 
