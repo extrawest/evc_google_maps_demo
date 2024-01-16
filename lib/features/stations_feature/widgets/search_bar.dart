@@ -6,10 +6,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map_training/common/theme.dart';
 import 'package:flutter_map_training/features/stations_feature/bloc/bloc.dart';
 
-class SearchBar extends StatelessWidget {
+class SearchBarWidget extends StatelessWidget {
   final bool autofocus;
 
-  const SearchBar({
+  const SearchBarWidget({
     this.autofocus = false,
     Key? key,
   }) : super(key: key);
